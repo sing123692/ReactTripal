@@ -25,7 +25,6 @@ page.post('/login2', express.urlencoded(), (req, res) => {
             return res.send("資料庫發生錯誤");
         } else if (results.length === 0) {
             console.log("尚未註冊");
-
             return res.json({ status: 'notuser', message: '查無此用戶尚未註冊' });
         } else {
             if (req.body.id !== null && req.body.password !== null) {
