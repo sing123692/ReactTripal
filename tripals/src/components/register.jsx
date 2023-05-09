@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import './CSS/login.css';
+import './CSS/Register.css';
 import axios from 'axios';
 
 
 
-const Login = (props) => {
+const Register = (props) => {
     const [id, setId] = useState('');
     const [password, setpassword] = useState('');
+    const [password2, setpassword2] = useState('');
     const [labelText, setLabelText] = useState('');
 
     const handleSubmit = async (event) => {
@@ -16,9 +17,10 @@ const Login = (props) => {
         try{
             
 
-            const response = await axios.post('http://localhost:8000/login2',{
+            const response = await axios.post('http://localhost:8000/register2',{
                 id: id,
                 password : password,
+                password2 : password2,
             },{
                 headers:{
                     'Content-Type': 'application/x-www-form-urlencoded'
@@ -49,7 +51,7 @@ const Login = (props) => {
 
     return (
         <div id="RegisterPage">
-            <h1>Welcome back to Tripals</h1>
+            <h1>註冊Tripals</h1>
             <input type="button" value="透過Google登入" />
             <input type="button" value="透過Facebook登入"/>
             
@@ -58,7 +60,7 @@ const Login = (props) => {
             <p>OR</p>
             <hr/>
             </div>
-            <form id="Loginform"  onSubmit={handleSubmit}>
+            <form id="RegisterForm"  onSubmit={handleSubmit}>
             <label for="id">信箱</label>
             <input  name="id" 
                     type="text"
@@ -66,9 +68,14 @@ const Login = (props) => {
                     onChange={(event)=>setId(event.target.value)}/>
             <label for="password">密碼</label>
             <input  name="password"
-                     type="text"
-                     value={password}
-                     onChange={(event)=>setpassword(event.target.value)}/>
+                    type="text"
+                    value={password}
+                    onChange={(event)=>setpassword(event.target.value)}/>
+            <label for="password2">再次輸入</label>
+            <input  name="password2"
+                    type="password"
+                    value={password2}
+                    onChange={(event)=>setpassword2(event.target.value)}/>
             <label htmlFor="">{labelText}</label>
             <input type="submit" value="登入"/>
             <p>沒有Tripals帳號?</p>
@@ -82,4 +89,4 @@ const Login = (props) => {
     );
 };
 
-export default Login;
+export default Register;
