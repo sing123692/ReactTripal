@@ -25,13 +25,16 @@ const Login = () => {
 
                 }
             });
+
+            // console.log(response);
             console.log(id,password);
             const {status} = response.data;
             if(status === 'notEnter'){
                 setLabelText("尚未輸入");
             }else if (status === 'success'){
                 setLabelText("登入成功");
-                window.location = '../../TaiwanTripals/Tripals.html';
+                // window.location = '/SessionTest';
+                console.log('kk');
             }else if(status === 'notExist'){
                 setLabelText("尚未註冊");
             }else if(status === 'fail'){

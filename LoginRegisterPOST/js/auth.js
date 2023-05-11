@@ -1,7 +1,5 @@
 const router = require("express").Router();
 const passport = require("passport");
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
-
 const CLIENT_URL = "http://localhost:3000/";
 
 router.get("/login/success",(req, res)=>{

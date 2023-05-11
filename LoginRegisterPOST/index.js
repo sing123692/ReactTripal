@@ -1,10 +1,14 @@
 const express = require('express');
 const app = express();
 const cors = require("cors");
-const passportSetup = require("./js/passport.js");
 const passport = require("passport");
+const passportSetup = require("./js/passport.js");
 const cookieSession = require('cookie-session');
+const session = require('express-session');
+const bodyParser = require('body-parser');
 
+
+app.use(bodyParser.json());
 
 app.listen(8000, () => {
     console.log('Sever running');
@@ -14,20 +18,35 @@ app.use(express.static(__dirname + '/public'));
 
 app.use('/css', express.static('css'));
 
-app.use(cors());
 
 app.use(cookieSession(
     {
-        name :"session",
-        keys : ["lama"],
+        name: "session",
+        keys: ["lama"],
         maxAge: 10 * 1000 //24*60*60*100
     }
 ));
+app.use(session({
+    secret: 'my secret key', // 用於加密會話ID的密鑰，可以自行替換
+    resave: false,
+    saveUninitialized: true,
+    maxAge: 5 * 10000
+}));
 
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use(cors());
 
+// app.get('/getSessionData', (req, res) => {
+//     if (req.session.user) {
+//       console.log(req.session.user);
+//       const sessionData = req.session.user;
+//       res.json(sessionData);
+//     } else {
+//       res.redirect('/register');
+//     }
+// });
 // app.get('/re', (req, res) => {
 //     // console.log("done");
 //     res.sendFile(__dirname + '/register.html');
@@ -42,27 +61,11 @@ app.use(passport.session());
 //     res.sendFile(__dirname + '/RegisterSuccess.html');
 // });
 
-
 var router1 = require('./js/register.js');
 app.use('/', router1);
 
 var router2 = require('./js/login.js');
-
 app.use('/', router2);
 
 const authRoute = require("./js/auth.js");
-app.use("/auth",authRoute);
-
-app.use((req, res, next)=>{
-    if(req.session.user){
-        next();
-    }else{
-        res.redirect('/login');
-    }
-    console.log(req.session.user);
-});
-
-app.get('/getSessionData',(req, res)=>{
-    const sessionData = req.session.user;
-    res.json(sessionData);
-})
+app.use("/auth", authRoute);

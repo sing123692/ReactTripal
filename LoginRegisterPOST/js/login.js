@@ -1,6 +1,5 @@
 const express = require('express');
 const session = require('express-session');
-
 const bodyParser = require('body-parser');
 const app = express();
 
@@ -8,18 +7,23 @@ var page = express.Router();
 
 var mysqlConn = require('./config');
 
+let userno;
 
-app.use(session({
-    secret: 'my secret key', // 用於加密會話ID的密鑰，可以自行替換
-    resave: false,
-    saveUninitialized: true,
-    maxAge: 5 * 1000
-}));
 
 app.use(bodyParser.json());
 
+app.use(session({
+    secret: 'mysecretkey', 
+    resave: false,
+    saveUninitialized: true,
+    maxAge: 5 * 1000,
+    cookie :{secure:false}
+}));
 
-
+app.use('/getSessionData', (req, res, next) => {
+    console.log(req.session); // 输出 session
+    next();
+  });
 
 page.post('/login2', express.urlencoded(), (req, res) => {
 
@@ -54,9 +58,9 @@ page.post('/login2', express.urlencoded(), (req, res) => {
                     req.session.user = {
                         id: req.body.id,
                         password: req.body.password
+                     
                     };
-                    console.log(req.session.user);
-                    return res.json({ status: 'success', message: "登入成功" });
+                    return res.json({ status: 'success', message: "登入成功",data:req.session.user });
                 }
 
             });
@@ -66,6 +70,10 @@ page.post('/login2', express.urlencoded(), (req, res) => {
 
 
 });
+
+
+
+  
 
 
 module.exports = page;

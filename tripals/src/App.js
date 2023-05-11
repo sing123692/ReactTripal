@@ -7,6 +7,7 @@ import Navigation from './components/Navigation';
 import login from './components/login';
 import register from './components/register';
 import AppSessionTest from './components/SessionTest';
+import Target from './components/Target';
 
 class App extends Component {
   state = {}
@@ -20,6 +21,7 @@ class App extends Component {
             <Route path="/login" component={login} />
             <Route path="/register" component={register} />
             <Route path="/SessionTest" component={AppSessionTest} />
+            <Route path="/Target" component={Target} />
           </Switch>
           <LoadingPage />
 

@@ -1,0 +1,401 @@
+@import url('https://fonts.googleapis.com/css2?family=Sen:wght@800&display=swap');
+
+
+.cityName {
+    display: none;
+}
+
+
+.MyDiv {
+    display: none;
+    width: 100%;
+
+}
+
+.SearchMap {
+    display: none;
+}
+
+
+.SearchMap {
+    position: relative;
+
+    left: 50%;
+}
+
+#NavBar {
+    height: 100px;
+}
+
+
+body {
+    font-family: 'Sen', sans-serif;
+    margin: 0;
+    background-color: #F0E8DC;
+    overflow: hidden;
+
+}
+
+#myWindow {
+    width: 100%;
+    height: 100vh;
+
+    display: flex;
+
+    #GreemCloud {
+        position: absolute;
+        z-index: -999;
+        right: 0;
+        bottom: 0;
+        width: 500px;
+    }
+
+    #TaiwanMap {
+        left: 20%;
+        width: 50vw;
+        height: 100%;
+
+
+    }
+
+
+
+    #TaiwanRowHover {
+        position: absolute;
+    }
+
+    #select {
+        position: static;
+        max-width: 100vw;
+        max-height: 100%;
+
+
+
+        .GreenDesign {
+            font-size: 2rem;
+            font-weight: bold;
+            position: absolute;
+            z-index: 3;
+            right: 40%;
+            width: 300px;
+            height: 50px;
+            background-color: #B2D5CE;
+            color: white;
+            box-shadow: 0px 4px 4px rgba(37, 20, 20, 0.25);
+
+        }
+
+        .Target {
+            position: fixed;
+            width: 500px;
+            height: 600px;
+            background-color: white;
+            top: 15%;
+            left: 50%;
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+            transform: translate(-20%);
+            margin: 20px;
+            align-items: center;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+
+            .TargetRow {
+                padding: 5px;
+                background-color: white;
+                justify-content: center;
+                display: inline-block;
+                text-align: center;
+                width: 100%;
+                height: 100%;
+
+
+
+            }
+
+            .Target ul {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+
+            li {
+                display: block;
+                text-align: center;
+                white-space: nowrap;
+                font-weight: bold;
+                font-size: 2rem;
+                color: #8caaa4;
+                letter-spacing: 2px;
+                margin: 5px;
+                cursor: pointer;
+                width: 100%;
+
+            }
+
+        }
+
+        .Divweather {
+            position: absolute;
+            top: 50%;
+            left: 65%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            .CityText {
+                font-size: 2rem;
+                margin-left: -80%;
+            }
+
+            .TargetImg {
+                width: 480px;
+                height: 400px;
+
+                img {
+                    border-radius: 5px;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+
+                }
+
+            }
+
+            .weather {
+                position: relative;
+
+                hr {
+                    border: 2px solid rgb(255, 255, 255);
+                    opacity: 1;
+                    size: 1;
+                    width: 100%;
+                }
+
+            }
+        }
+
+        @media screen and (max-width:900px) {
+            .Target {
+                width: 50%;
+            }
+
+        }
+
+
+        @media screen and (max-width: 700px) {
+
+
+            #TaiwanMap {
+                display: none;
+            }
+
+            .GreenDesign {
+                display: none;
+            }
+
+            .Target {
+
+                display: none;
+
+
+            }
+
+            .MyDiv {
+                display: block;
+            }
+
+            .SearchMap {
+                display: block;
+            }
+
+            #TaiwanSvg {
+                display: none;
+            }
+
+
+
+        }
+
+
+
+        // .Divweather {
+        //     max-width: 100%;
+        //     height: auto;
+        //     display: flex;
+        //     flex-direction: column;
+        //     position: relative;
+        //     top: 0;
+        //     left: 0;
+
+        //     .TargetImg {
+        //         z-index: 1;
+        //         position: absolute;
+
+        //         max-width: 80%;
+        //         height: 300px;
+        //         text-align: center;
+        //         object-fit: cover;
+        //         margin-top: 50%;
+
+        //         img {
+        //             border-radius: 5px;
+
+        //             top: 50%;
+
+        //             width: 30rem;
+        //             height: 25rem;
+        //             justify-content: center;
+        //             background-color: lightcoral;
+        //         }
+
+        //     }
+
+        //     .weather {
+        //         padding-top: 30rem;
+        //         z-index: 1;
+        //         position: relative;
+        //        margin-left: 3rem;
+        //         white-space: nowrap;
+        //         transform: translateX(-40%);
+        //         transform: translateY(20%);
+
+        //         left: 40%;
+        //         h4 {
+        //             text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        //             text-align: center;
+        //             font-size: 1.5rem;
+        //             color: #2b4742;
+        //         }
+
+        //         hr {
+        //             border: 2px solid rgb(71, 23, 23);
+        //             size: 1;
+        //             width: 70%;
+        //         }
+        //     }
+
+
+        // }
+
+
+
+
+
+
+
+
+    }
+}
+
+
+
+.test {
+    display: inline-block;
+}
+
+svg {
+    height: 100vh;
+    width: 100vw;
+}
+
+path {
+    stroke: white;
+    fill: #8cb8af;
+    transition-duration: 0.8s;
+
+    &:hover {
+
+        fill: #2b4742;
+        transition-duration: 0.8s;
+
+    }
+}
+
+
+@media screen and (max-width: 700px) {
+    body {
+        overflow: auto;
+    }
+
+    .TargetImg {
+        display: none;
+    }
+
+    #GreemCloud {
+        display: none;
+    }
+
+    .cityName {
+        display: block;
+        margin-top: 50px;
+
+        input {
+            position: absolute;
+            left: 50%;
+            transform: translatex(-50%);
+            margin-top: -50px;
+            width: 70%;
+            height: 5%;
+            border-radius: 30px;
+            border: none;
+        }
+
+        h1 {
+            background-color: #8caaa4;
+            font-size: 3rem;
+            font-weight: bolder;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+
+            li {
+                font-size: 2rem;
+                text-align: center;
+
+                font-weight: bold;
+                color: #2b4742;
+
+                &:hover {
+                    transition-duration: 0.8s;
+                    background-color: #b2d5ce;
+                }
+            }
+
+            a {
+                font-size: 2rem;
+
+                width: 100%;
+                font-weight: bold;
+                color: #2b4742;
+
+                &:hover {
+                    transition-duration: 0.8s;
+                    background-color: white;
+
+                }
+            }
+
+
+
+        }
+
+
+    }
+
+    #TaiwanSvg {
+        display: none;
+    }
+
+
+}
