@@ -4,7 +4,7 @@ import axios from 'axios';
 
 
 
-const Login = () => {
+const Login = (props) => {
     const [id, setId] = useState('');
     const [password, setpassword] = useState('');
     const [labelText, setLabelText] = useState('');
@@ -33,9 +33,9 @@ const Login = () => {
                 setLabelText("登入成功");
                 window.location = '../../TaiwanTripals/Tripals.html';
             }else if(status === 'notExist'){
-                setLabelText("尚未註冊");
+                alert('尚未註冊');
             }else if(status === 'fail'){
-                setLabelText("密碼錯誤");
+                console.log('帳號或密碼錯誤');
             }
 
               
@@ -44,15 +44,13 @@ const Login = () => {
             }
         }
     
-        const google = () =>{
-            window.open("http://localhost:8000/auth/google","_self");
-        }
+    
 
 
     return (
         <div id="RegisterPage">
             <h1>Welcome back to Tripals</h1>
-            <input type="button" value="透過Google登入" onClick={google} />
+            <input type="button" value="透過Google登入" />
             <input type="button" value="透過Facebook登入"/>
             
             <div id="hrOr">
@@ -71,7 +69,7 @@ const Login = () => {
                      type="text"
                      value={password}
                      onChange={(event)=>setpassword(event.target.value)}/>
-            <label id='checkLabel' htmlFor="">{labelText}</label>
+            <label htmlFor="">{labelText}</label>
             <input type="submit" value="登入"/>
             <p>沒有Tripals帳號?</p>
             <a href="#">Sign up</a>
