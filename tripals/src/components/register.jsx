@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './CSS/Register.css';
 import axios from 'axios';
 
@@ -52,8 +52,8 @@ const Register = (props) => {
     return (
         <div id="RegisterPage">
             <h1>註冊Tripals</h1>
-            <input type="button" value="透過Google登入" />
-            <input type="button" value="透過Facebook登入"/>
+            <input type="button" value="透過Google繼續" />
+            <input type="button" value="透過Facebook繼續"/>
             
             <div id="hrOr">
             <hr/>
@@ -77,9 +77,9 @@ const Register = (props) => {
                     value={password2}
                     onChange={(event)=>setpassword2(event.target.value)}/>
             <label htmlFor="">{labelText}</label>
-            <input type="submit" value="登入"/>
-            <p>沒有Tripals帳號?</p>
-            <a href="#">Sign up</a>
+            <input type="submit" value="註冊"/>
+            <p>已有Tripals帳號?</p>
+            <a href="#">Sign in</a>
             </form>
 
 

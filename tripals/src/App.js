@@ -6,6 +6,7 @@ import About from './components/About';
 import Navigation from './components/Navigation';
 import login from './components/login';
 import register from './components/register';
+import AppSessionTest from './components/SessionTest';
 
 class App extends Component {
   state = {}
@@ -18,6 +19,7 @@ class App extends Component {
             <Route path="/about" component={About} />
             <Route path="/login" component={login} />
             <Route path="/register" component={register} />
+            <Route path="/SessionTest" component={AppSessionTest} />
           </Switch>
           <LoadingPage />
 
