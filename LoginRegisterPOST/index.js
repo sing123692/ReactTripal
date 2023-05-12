@@ -19,13 +19,13 @@ app.use(express.static(__dirname + '/public'));
 app.use('/css', express.static('css'));
 
 
-app.use(cookieSession(
-    {
-        name: "session",
-        keys: ["lama"],
-        maxAge: 10 * 1000 //24*60*60*100
-    }
-));
+// app.use(cookieSession(
+//     {
+//         name: "session",
+//         keys: ["lama"],
+//         maxAge: 10 * 1000 //24*60*60*100
+//     }
+// ));
 app.use(session({
     secret: 'my secret key', // 用於加密會話ID的密鑰，可以自行替換
     resave: false,

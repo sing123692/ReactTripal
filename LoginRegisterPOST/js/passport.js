@@ -12,7 +12,35 @@ passport.use(new GoogleStrategy({
   callbackURL: "/auth/google/callback",
 },
   function (accessToken, refreshToken, profile, done) {
-    done(null, profile)
+
+    if (!profile.emails || !profile.emails.length) {
+      return done(new Error('No email associated with this account'));
+    }
+
+    const email = profile.emails[0].value;
+
+    const queryString = 'SELECT * FROM tb_user WHERE id = ?';
+    const queryValues = [email ];
+
+    mysqlConn.query(queryString, queryValues, async (error, results) => {
+      if(error){
+        done(error, null);
+      }else if (results.length > 0){
+        done(null, results[0]);
+      }else{
+        const insertQuery = 'INSERT INTO tb_user (id) VALUES (?)';
+        const insertValues = [email];
+        
+        try{
+          await mysqlConn.query(insertQuery, insertValues);
+          const newUser = {id : email};
+          done(null, newUser);
+        }catch (err){
+          console.error(err);
+          done(err, null);
+        }
+      }
+    })
 
   }
 ));

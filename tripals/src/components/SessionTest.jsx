@@ -3,7 +3,7 @@ import axios from 'axios';
 
 function AppSessionTest() {
   const [sessionData, setSessionData] = useState({id:''}); // 預設為空物件
-
+  const [labelText, setLabelText] = useState('');
   // useEffect(() => {
   //   axios.get('http://localhost:3000/getSessionData')
   //     .then(response => {

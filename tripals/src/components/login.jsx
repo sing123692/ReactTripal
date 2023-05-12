@@ -33,8 +33,8 @@ const Login = () => {
                 setLabelText("尚未輸入");
             }else if (status === 'success'){
                 setLabelText("登入成功");
-                // window.location = '/SessionTest';
-                console.log('kk');
+                window.location = '/SessionTest';
+                
             }else if(status === 'notExist'){
                 setLabelText("尚未註冊");
             }else if(status === 'fail'){
