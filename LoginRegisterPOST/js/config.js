@@ -10,7 +10,7 @@
 const mysql = require('mysql');
 const conn = mysql.createConnection({
     host: 'localhost',
-    port: 8888,
+    port: 8889,
     user: 'root',
     password: 'root',
     database: 'db_tripals',

@@ -16,7 +16,7 @@ body {
   font-family: "Sen", sans-serif;
 }
 
-#RegisterPage {
+#LoginPage {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -31,7 +31,7 @@ body {
   height: 100%;
   width: 100%;
 }
-#RegisterPage input[type=button] {
+#LoginPage input[type=button] {
   display: block;
   margin: 0 auto;
   display: flex;
@@ -44,13 +44,13 @@ body {
   border: 1px solid #B2D5CE;
   margin-top: 15px;
 }
-#RegisterPage input[type=button]:active {
+#LoginPage input[type=button]:active {
   background-color: #92b9b4;
 }
-#RegisterPage input[type=button]:hover {
+#LoginPage input[type=button]:hover {
   background-color: #e3f1ef;
 }
-#RegisterPage #hrOr {
+#LoginPage #hrOr {
   display: flex;
   align-items: center;
   height: 0.5px;
@@ -59,27 +59,27 @@ body {
   border: none;
   margin-top: 4rem;
 }
-#RegisterPage #hrOr p {
+#LoginPage #hrOr p {
   background-color: white;
 }
-#RegisterPage form {
+#LoginPage form {
   display: flex;
   flex-direction: column;
   position: relative;
   margin-top: 4rem;
 }
-#RegisterPage form label {
+#LoginPage form label {
   font-size: 1rem;
   /* 調整label的位置 */
 }
-#RegisterPage form input {
+#LoginPage form input {
   position: relative;
   margin: 0 auto;
   width: 50%;
   height: 20px;
   margin-top: 5px;
 }
-#RegisterPage form input[type=submit] {
+#LoginPage form input[type=submit] {
   margin-top: 30px;
   display: block;
   margin: 0 auto;
@@ -93,13 +93,13 @@ body {
   border: 1px solid #B2D5CE;
   margin-top: 15px;
 }
-#RegisterPage form input[type=submit]:active {
+#LoginPage form input[type=submit]:active {
   background-color: #B2D5CE;
 }
-#RegisterPage form input[type=submit]:hover {
+#LoginPage form input[type=submit]:hover {
   background-color: #e3f1ef;
 }
-#RegisterPage form a {
+#LoginPage form a {
   font-size: 1rem;
   color: #B2D5CE;
 }/*# sourceMappingURL=login.css.map */

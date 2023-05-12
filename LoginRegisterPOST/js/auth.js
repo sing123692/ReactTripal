@@ -12,6 +12,14 @@ router.get("/google/callback",passport.authenticate("google",{
 }))
 
 
+router.get("/facebook", passport.authenticate("facebook",{scope: ['public_profile']}));
+
+router.get("/facebook/callback",passport.authenticate("facebook",{
+    successRedirect: CLIENT_URL, 
+    failureRedirect : "/login/failed"
+}))
+
+
 
 router.get("/login/success",(req, res)=>{
     if(req.user){

@@ -49,14 +49,17 @@ const Login = () => {
     
         const google = () =>{
             window.open("http://localhost:8000/auth/google","_self");
-        }
+        };
+        const facebook= () =>{
+            window.open("http://localhost:8000/auth/facebook","_self");
+        };
 
 
     return (
-        <div id="RegisterPage">
+        <div id="LoginPage">
             <h1>Welcome back to Tripals</h1>
             <input type="button" value="透過Google登入" onClick={google} />
-            <input type="button" value="透過Facebook登入"/>
+            <input type="button" value="透過Facebook登入" onClick={facebook}/>
             
             <div id="hrOr">
             <hr/>

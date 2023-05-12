@@ -68,10 +68,18 @@ page.post('/login2', express.urlencoded(), (req, res) => {
 
     });
 
-
+  
 });
 
-
+app.get('/getSessionData', (req, res) => {
+    if (req.session.user) {
+      console.log(req.session.user);
+      const sessionData = req.session.user;
+      res.json(sessionData);
+    } else {
+      res.redirect('/');
+    }
+});
 
   
 
