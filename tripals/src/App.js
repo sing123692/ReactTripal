@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import LoadingPage from './components/Loding';
 import About from './components/About';
 import Navigation from './components/Navigation';
 import login from './components/login';
@@ -23,7 +22,6 @@ class App extends Component {
             <Route path="/SessionTest" component={AppSessionTest} />
             <Route path="/Target" component={Target} />
           </Switch>
-          <LoadingPage />
 
         </div>
       </BrowserRouter>
