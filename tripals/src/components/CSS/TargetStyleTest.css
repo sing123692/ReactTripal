@@ -133,6 +133,36 @@ body {
   .cityName {
     display: block;
     margin-top: 50px;
+    width: 100%;
+  }
+  .cityName h1 {
+    background-color: #8caaa4;
+    font-size: 3rem;
+    font-weight: bolder;
+  }
+  .cityName ul {
+    list-style: none;
+    padding: 0;
+  }
+  .cityName ul li {
+    font-size: 2rem;
+    text-align: center;
+    font-weight: bold;
+    color: #2b4742;
+  }
+  .cityName ul li:hover {
+    transition-duration: 0.8s;
+    background-color: #b2d5ce;
+  }
+  .cityName ul a {
+    font-size: 2rem;
+    width: 100%;
+    font-weight: bold;
+    color: #2b4742;
+  }
+  .cityName ul a:hover {
+    transition-duration: 0.8s;
+    background-color: white;
   }
   .TargetImg {
     display: none;
