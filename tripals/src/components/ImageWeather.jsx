@@ -1,76 +1,101 @@
 import React, { useRef, useState, useEffect } from 'react';
 import './CSS/TargetStyleTest.css';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCloudRain } from '@fortawesome/free-solid-svg-icons';
 
 
 const ImageWeather = (props) => {
-  // const svgRef = useRef(null);
-  // const id = svgRef.current?.getAttribute('id');
+console.log(props.openDataa.records.locations[0].location.filter(value=>value.locationName==props.ID)[0].weatherElement[8])
+//引用父元件svg  父元件設定:ref{svgRef}
   const svgRef = props.svgRef;
+  console.log(svgRef)
 
-  const [DayMinTemperature, setDayMinTemperature] = useState(0);
-  const [TMRMinTemperature, setTMRMinTemperature] = useState(0);
-  const [AfterTMRMinTemperature, setAfterTMRMinTemperature] = useState(0);
+//Day本日 TMR明日 AfterTMR後天  
+//低溫State
+  const [DayMinTemperature, setDayMinTemperature] = useState(props.openDataa.records.locations[0].location.filter(value=>value.locationName==props.ID)[0].weatherElement[8].time[0].elementValue[0].value);
+  const [TMRMinTemperature, setTMRMinTemperature] = useState(props.openDataa.records.locations[0].location.filter(value=>value.locationName==props.ID)[0].weatherElement[8].time[2].elementValue[0].value);
+  const [AfterTMRMinTemperature, setAfterTMRMinTemperature] = useState(props.openDataa.records.locations[0].location.filter(value=>value.locationName==props.ID)[0].weatherElement[8].time[4].elementValue[0].value);
 
+//高溫State 
   const [DayMaxTemperature, setDayMaxTemperature] = useState('');
   const [TMRMaxTemperature, setTMRMaxTemperature] = useState('');
   const [AfterTMRMaxTemperature, setAfterTMRMaxTemperature] = useState('');
 
+//降雨機率
   const [DayRain, setDayRain] = useState('');
   const [TMRRain, setTMRRain] = useState('');
   const [AfterTMRRain, setAfterTMRRain] = useState('');
 
-
+//天氣因子icon 
   const [DayWeatherIcon, setDayWeatherIcon] = useState('');
   const [TMRWeatherIcon, setTMRWeatherIcon] = useState('');
   const [AfterTMRWeatherIcon, setAfterTMRWeatherIcon] = useState('');
 
+//城市圖片
+  const [MyImage, setMyImage] = useState(props.pictureDataa.counties.filter(value=>value.cityName==props.ID)[0].Picture1);
+  console.log(MyImage)
+  
 
-  const [MyImage, setMyImage] = useState('');
 
+//城市名稱
+const [TaiwanCityName, setTaiwanCityName] = useState(props.ID);
 
-  let PictureData = null;
+//-----------------------------
+//全域變數
+  
+  // let PictureData = null;
   let openData = null;
-  useEffect(() => {
-    axios.get('https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-091', {
-      params: {
-        Authorization: 'CWB-48477E54-C467-48A6-A65F-01F95D41D98D',
-        format: 'JSON',
-        sort: 'time'
-      }
-    })
-      .then(function (response) {
-        console.log(response.data);
-        openData = response.data;
-        console.log("JSON載入成功");
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }, []);
 
+  //-----------------------------
+//載入openData
 
-  useEffect(() => {
-    axios.get('./TaiwanPictrue.json', {
+  // useEffect(() => {
+  //   axios.get('https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-091', {
+  //     params: {
+  //       Authorization: 'CWB-48477E54-C467-48A6-A65F-01F95D41D98D',
+  //       format: 'JSON',
+  //       sort: 'time'
+  //     }
+  //   })
+  //     .then(function (response) {
+  //       console.log(response.data);
+  //       openData = response.data;
+  //       console.log("JSON載入成功");
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     });
+  // }, []);
 
-    })
-      .then(function (response) {
-        console.log(response.data);
-        PictureData = response.data;
-        console.log("圖片本地JSON載入成功");
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }, []);
+//-----------------------------
+//載入圖片JSON 
+//檔案位置 : public
 
+  // useEffect(() => {
+  //   axios.get('./TaiwanPictrue.json')
+  //     .then(function (response) {
+  //       PictureData = response.data;
 
+  //       console.log(response.data);
+        
+  //       console.log("圖片本地JSON載入成功");
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     });
+  // }, []);
+
+//-----------------------------
+//滑鼠移入function
 
   const handleCityEnter = (event) => {
-    const id = event.target.getAttribute('id');
-    console.log(id);
-    if (openData) {
-      openData.records.locations[0].location.forEach(function (cityData) {
+    const id = event.target.getAttribute('id'); // pathEnter Get svg id 
+    // console.log(id);
+//-----------------------------
+//天氣資料
+    if (props.openDataa) {
+      props.openDataa.records.locations[0].location.forEach(function (cityData) {
         if (cityData.locationName === id) {
           const DayMin = cityData.weatherElement[8].time[0].elementValue[0].value;
           const TMRMin = cityData.weatherElement[8].time[1].elementValue[0].value;
@@ -110,20 +135,26 @@ const ImageWeather = (props) => {
         }
       });
     }
-
-    if(PictureData){
-      PictureData.counties.forEach(function(county){
-        if(county.city === id){
+//-----------------------------
+//圖片資料
+    if (props.pictureDataa) {
+      props.pictureDataa.counties.forEach(function(county){
+        // console.log(county.cityName);
+        if(county.cityName === id){
           setMyImage(county.Picture1);
+          setTaiwanCityName(county.cityName);
           console.log(county.Picture1);
           return;
         } 
-      })
+      });
     }
 
 
   };
 
+
+//-----------------------------
+//滑鼠離開
   const handleCityLeave = () => {
     setDayMinTemperature('');
     setTMRMinTemperature('');
@@ -145,11 +176,20 @@ const ImageWeather = (props) => {
     setMyImage('');
 
   };
+  function handleCityClick(e){
+console.log(e.target.dataset.city)
+sessionStorage.setItem('city',e.target.dataset.city)
+  }
 
-
+//-----------------------------
+//遍歷path加入監聽事件
   useEffect(() => {
     const paths = svgRef.current.querySelectorAll('path');
+
     paths.forEach((path) => {
+      const city = path.getAttribute('id');
+      path.setAttribute('data-city', city);
+      path.addEventListener('click',handleCityClick);
       path.addEventListener('mouseenter', handleCityEnter);
       path.addEventListener('mouseleave', handleCityLeave);
     });
@@ -164,18 +204,24 @@ const ImageWeather = (props) => {
 
   }, []);
 
-
+  
   return (
 
     <div>
       <div className='CityImage'>
-        123
+
+        <div className='CityImageName'>{TaiwanCityName}</div>
+        <img src={MyImage} alt="" />
+        <hr />
+
       </div>
-      <hr />
+     
       <div className='CityWeather'>
-        <p>本日天氣: {DayMinTemperature} °C ~ {DayMaxTemperature} °C</p>
-        <p>明天天氣: {TMRMinTemperature} °C ~ {TMRMaxTemperature} °C</p>
-        <p>後天天氣: {AfterTMRMinTemperature} °C ~ {AfterTMRMaxTemperature} °C</p>
+      
+
+        <p>今天&nbsp;&nbsp;&nbsp;&nbsp;{DayMinTemperature}      °C ~ {DayMaxTemperature}      °C &nbsp;&nbsp; <FontAwesomeIcon icon={faCloudRain} /> {DayRain}%</p>
+        <p>明天&nbsp;&nbsp;&nbsp;&nbsp;{TMRMinTemperature}      °C ~ {TMRMaxTemperature}      °C &nbsp;&nbsp; {TMRRain}%</p>
+        <p>後天&nbsp;&nbsp;&nbsp;&nbsp;{AfterTMRMinTemperature} °C ~ {AfterTMRMaxTemperature} °C &nbsp;&nbsp; {AfterTMRRain}%</p>
 
 
       </div>
