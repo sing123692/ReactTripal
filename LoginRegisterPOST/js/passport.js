@@ -19,8 +19,10 @@ passport.use(new GoogleStrategy({
   function (accessToken, refreshToken, profile, done) {
     console.log(profile);
     console.log(profile.id);
+    console.log(profile.emails[0].value);
+
     
-    const Googleid = profile.id;
+    const Googleid = profile.emails[0].value;
 
     const queryString = 'SELECT * FROM tb_user WHERE id = ?';
     const queryValues = [Googleid];
@@ -47,6 +49,8 @@ passport.use(new GoogleStrategy({
 
   }
 ));
+
+
 
 
 passport.use(new FacebookStrategy({

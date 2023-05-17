@@ -26,14 +26,14 @@ const Login = () => {
                 }
             });
 
-            // console.log(response);
+            console.log(response);
             console.log(id,password);
             const {status} = response.data;
             if(status === 'notEnter'){
                 setLabelText("尚未輸入");
             }else if (status === 'success'){
                 setLabelText("登入成功");
-                window.location = '/SessionTest';
+                // window.location = '/SessionTest';
                 
             }else if(status === 'notExist'){
                 setLabelText("尚未註冊");
@@ -69,12 +69,12 @@ const Login = () => {
             <form id="Loginform"  onSubmit={handleSubmit}>
             <label for="id">信箱</label>
             <input  name="id" 
-                    type="text"
+                    type="email"
                     value={id}
                     onChange={(event)=>setId(event.target.value)}/>
             <label for="password">密碼</label>
             <input  name="password"
-                     type="text"
+                     type="password"
                      value={password}
                      onChange={(event)=>setpassword(event.target.value)}/>
             <label id='checkLabel' htmlFor="">{labelText}</label>

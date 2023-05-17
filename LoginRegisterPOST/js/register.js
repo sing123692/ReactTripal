@@ -13,11 +13,6 @@ app.use(bodyParser.json());
 
 
 page.post('/register2', express.urlencoded(), (req, res) => {
-    // console.log('done');
-    // console.log(req.body);
-    // if([req.body.password] === [req.body.password2]){
-    //     conso
-    // }
 
 
     const sqlselect = "SELECT * FROM tb_user WHERE id = ?";
@@ -27,13 +22,13 @@ page.post('/register2', express.urlencoded(), (req, res) => {
         //判斷密碼二次輸入
         if(req.body.password !== req.body.password2){
             console.log("輸入的密碼不一致請重新輸入");
-            return res.send("輸入的密碼不一致請重新輸入");
+            return res.json({ status: 'DoublePasswordError', message: "輸入的密碼不一致請重新輸入" });
         }
         //判斷是否有被註冊
         if (results.length > 0) {
 
             console.log("已經被註冊");
-            return res.json();
+            return res.json({ status: 'Exist', message: "已經被註冊" });
 
         } else {
 

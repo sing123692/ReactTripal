@@ -28,7 +28,7 @@ app.use(cookieSession(
 ));
 
 app.use(session({
-    secret: 'my secret key', // 用於加密會話ID的密鑰，可以自行替換
+    secret: 'asdasdasdqwrqrwrqr', 
     resave: false,
     saveUninitialized: true,
     maxAge: 5 * 10000
@@ -48,6 +48,10 @@ app.use(cors());
 //       res.redirect('/register');
 //     }
 // });
+
+
+
+//-------不用react連本地用---------------
 // app.get('/re', (req, res) => {
 //     // console.log("done");
 //     res.sendFile(__dirname + '/register.html');
@@ -62,6 +66,9 @@ app.use(cors());
 //     res.sendFile(__dirname + '/RegisterSuccess.html');
 // });
 
+//---------------------------------------
+
+
 var router1 = require('./js/register.js');
 app.use('/', router1);
 
@@ -72,10 +79,3 @@ const authRoute = require("./js/auth.js");
 app.use("/auth", authRoute);
 
 
-app.get('/getSessionData', (req, res) => {
-    if (req.session.user) {
-     res.json({status:'successLogin', data:req.session.user});
-    } else {
-      res.json({status:'failLogin', message: 'FailLogin' });
-    }
-});

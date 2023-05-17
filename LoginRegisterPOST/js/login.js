@@ -57,7 +57,10 @@ page.post('/login2', express.urlencoded(), (req, res) => {
                         password: req.body.password
                      
                     };
-                    return res.json({ status: 'success', message: "登入成功",data:req.session.user });
+                    return res.json({ 
+                        status: 'success', 
+                        message: "登入成功",
+                        data:req.session.user });
                 }
 
             });
