@@ -25,19 +25,19 @@ body {
         .TaiwanMapSvg {
             flex-basis: 50%;
             padding: 20px;
-            background-color: rgb(178, 189, 192);
-
+            
 
 
             path {
                 stroke: white;
                 fill: #8cb8af;
                 transition-duration: 0.8s;
-
+                
                 &:hover {
 
                     fill: #2b4742;
                     transition-duration: 0.8s;
+                    cursor: pointer;
 
                 }
             }
@@ -158,6 +158,7 @@ body {
                 font-weight: bolder;
                 color: #2b4742;
                 text-align: center;
+                white-space: nowrap;
 
             }
         }

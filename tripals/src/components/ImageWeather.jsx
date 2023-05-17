@@ -5,7 +5,7 @@ import axios from 'axios';
 
 const ImageWeather = (props) => {
   // console.log(props.openDataa.records.locations[0].location.filter(value=>value.locationName==props.ID)[0].weatherElement[8]);
-  console.log(props.openDataa.records.locations[0].location.filter(value => value.locationName == props.ID)[0].weatherElement[0]);
+  console.log(props.openDataa.records.locations[0].location.filter(value => value.locationName == props.ID)[0].weatherElement[6]);
   //引用父元件svg  父元件設定:ref{svgRef}
   const svgRef = props.svgRef;
   console.log(svgRef)
@@ -27,9 +27,9 @@ const ImageWeather = (props) => {
   const [AfterTMRRain, setAfterTMRRain] = useState(props.openDataa.records.locations[0].location.filter(value => value.locationName == props.ID)[0].weatherElement[0].time[4].elementValue[0].value);
 
   //天氣因子icon 
-  const [DayWeatherIcon, setDayWeatherIcon] = useState('');
-  const [TMRWeatherIcon, setTMRWeatherIcon] = useState('');
-  const [AfterTMRWeatherIcon, setAfterTMRWeatherIcon] = useState('');
+  const [DayWeatherIcon, setDayWeatherIcon] = useState(props.openDataa.records.locations[0].location.filter(value => value.locationName == props.ID)[0].weatherElement[6].time[0].elementValue[1].value);
+  const [TMRWeatherIcon, setTMRWeatherIcon] = useState(props.openDataa.records.locations[0].location.filter(value => value.locationName == props.ID)[0].weatherElement[6].time[2].elementValue[1].value);
+  const [AfterTMRWeatherIcon, setAfterTMRWeatherIcon] = useState(props.openDataa.records.locations[0].location.filter(value => value.locationName == props.ID)[0].weatherElement[6].time[4].elementValue[1].value);
 
   //城市圖片
   const [MyImage, setMyImage] = useState(props.pictureDataa.counties.filter(value => value.cityName == props.ID)[0].Picture1);
@@ -150,7 +150,49 @@ const ImageWeather = (props) => {
 
 
   };
+  //-----------------------------------------------            
+  //天氣icon            
+  var weatherIcon = "";
 
+  const sunnyWeather = ['01'];
+  const sunnyCloudyWeather = ['02', '03'];
+  const cloudyWeather = ['04', '05', '06', '07'];
+  const showerWeather = ['08', '09', '11', '12', '13', '19', '20', '21', '22', '29', '30'];
+  const rainyWeather = ['14', '15', '16', '17', '18'];
+
+
+  switch (true) {
+    case sunnyWeather.includes(DayWeatherIcon):
+    case sunnyWeather.includes(TMRWeatherIcon):
+    case sunnyWeather.includes(AfterTMRWeatherIcon):
+      weatherIcon = `fas fa-sun`;
+      break;
+    case sunnyCloudyWeather.includes(DayWeatherIcon):
+    case sunnyCloudyWeather.includes(TMRWeatherIcon):
+    case sunnyCloudyWeather.includes(AfterTMRWeatherIcon):
+      weatherIcon = `fa-solid fa-cloud-sun`;
+      break;
+    case cloudyWeather.includes(DayWeatherIcon):
+    case cloudyWeather.includes(TMRWeatherIcon):
+    case cloudyWeather.includes(AfterTMRWeatherIcon):
+      weatherIcon = `fas fa-smog`;
+      break;
+    case showerWeather.includes(DayWeatherIcon):
+    case showerWeather.includes(TMRWeatherIcon):
+    case showerWeather.includes(AfterTMRWeatherIcon):
+      weatherIcon = `fas fa-cloud-showers-heavy`;
+      break;
+    case rainyWeather.includes(DayWeatherIcon):
+    case rainyWeather.includes(TMRWeatherIcon):
+    case rainyWeather.includes(AfterTMRWeatherIcon):
+      weatherIcon = `fas fa-cloud-rain`;
+      break;
+  }
+
+
+
+  var RainIcon = `fa-solid fa-umbrella `;
+  
 
   //-----------------------------
   //滑鼠離開
@@ -218,9 +260,9 @@ const ImageWeather = (props) => {
       <div className='CityWeather'>
 
 
-        <p>今天&nbsp;&nbsp;&nbsp;&nbsp;{DayMinTemperature}      °C ~ {DayMaxTemperature}      °C &nbsp;&nbsp; {DayRain}%</p>
-        <p>明天&nbsp;&nbsp;&nbsp;&nbsp;{TMRMinTemperature}      °C ~ {TMRMaxTemperature}      °C &nbsp;&nbsp; {TMRRain}%</p>
-        <p>後天&nbsp;&nbsp;&nbsp;&nbsp;{AfterTMRMinTemperature} °C ~ {AfterTMRMaxTemperature} °C &nbsp;&nbsp; {AfterTMRRain}%</p>
+        <p>今天&nbsp;&nbsp; <i className={weatherIcon}></i>&nbsp;&nbsp;{DayMinTemperature}      °C ~ {DayMaxTemperature}      °C &nbsp;&nbsp; <i className={RainIcon}></i>{DayRain}%</p>
+        <p>明天&nbsp;&nbsp; <i className={weatherIcon}></i>&nbsp;&nbsp;{TMRMinTemperature}      °C ~ {TMRMaxTemperature}      °C &nbsp;&nbsp; <i className={RainIcon}></i>{TMRRain}%</p>
+        <p>後天&nbsp;&nbsp; <i className={weatherIcon}></i>&nbsp;&nbsp;{AfterTMRMinTemperature} °C ~ {AfterTMRMaxTemperature} °C &nbsp;&nbsp; <i className={RainIcon}></i>{AfterTMRRain}%</p>
 
 
       </div>

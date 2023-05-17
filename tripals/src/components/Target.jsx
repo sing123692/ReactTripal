@@ -8,9 +8,9 @@ import axios from 'axios';
 const Target = (props) => {
 	const [showCityList, setShowCityList] = useState(true);
 	const [showImageWeather, setshowImageWeather] = useState(false);
-	const [PictureData, setPictureData] = useState([])
-	const [openData, setopenData] = useState({})
-	const [ID, setID] = useState('')
+	const [PictureData, setPictureData] = useState([]);
+	const [openData, setopenData] = useState({});
+	const [ID, setID] = useState('');
 
 	useEffect(() => {
 		axios.get('./TaiwanPictrue.json')
@@ -24,21 +24,21 @@ const Target = (props) => {
 
 	useEffect(() => {
 		axios.get('https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-091', {
-		  params: {
-			Authorization: 'CWB-48477E54-C467-48A6-A65F-01F95D41D98D',
-			format: 'JSON',
-			sort: 'time'
-		  }
+			params: {
+				Authorization: 'CWB-48477E54-C467-48A6-A65F-01F95D41D98D',
+				format: 'JSON',
+				sort: 'time'
+			}
 		})
-		  .then(function (response) {
-			setopenData(response.data)
-			// openData = response.data;
-			console.log("JSON載入成功");
-		  })
-		  .catch(function (error) {
-			console.log(error);
-		  });
-	  }, []);
+			.then(function (response) {
+				setopenData(response.data);
+				// openData = response.data;
+				console.log("JSON載入成功");
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
+	}, []);
 
 	// console.log(PictureData)
 
@@ -65,7 +65,7 @@ const Target = (props) => {
 	function handleCityClick(e) {
 		// console.log(e.target.dataset.city);
 		sessionStorage.setItem('city', e.target.dataset.city);
-	  }
+	}
 
 
 	useEffect(() => {
@@ -91,7 +91,7 @@ const Target = (props) => {
 			paths.forEach((path) => {
 				path.removeEventListener('mouseenter', function () { });
 				path.removeEventListener('mouseleave', function () { });
-		
+
 			});
 		};
 
@@ -417,47 +417,48 @@ const Target = (props) => {
 				</div>
 
 				<div className="cityName">
-						<h1>北部地區</h1>
-						<ul>
-							<li data-city="基隆市">基隆市</li>
-							<li data-city="台北市">臺北市</li>
-							<li data-city="新北市">新北市</li>
-							<li data-city="宜蘭縣">宜蘭縣</li>
-							<li data-city="桃園市">桃園市</li>
-							<li data-city="新竹市">新竹市</li>
-							<li data-city="新竹縣">新竹縣</li>
-						</ul>
-						<h1>中部地區</h1>
-						<ul>
-							<li data-city="苗栗縣">苗栗縣</li>
-							<li data-city="台中市">臺中市</li>
-							<li data-city="彰化縣">彰化縣</li>
-							<li data-city="南投縣">南投縣</li>
-							<li data-city="雲林縣">雲林縣</li>
-						</ul>
-						<h1>南部地區</h1>
-						<ul>
-							<li data-city="嘉義市">嘉義市</li>
-							<li data-city="嘉義縣">嘉義縣</li>
-							<li data-city="台南市">臺南市</li>
-							<li data-city="高雄市">高雄市</li>
-							<li data-city="屏東縣">屏東縣</li>
+					<h1>北部地區</h1>
+					<ul>
+						{['基隆市', '臺北市', '新北市', '宜蘭縣', '桃園市', '新竹市', '新竹縣'].map((city) => (
+							<li key={city} data-city={city} onClick={(e) => handleCityClick(e)}>
+								{city}
+							</li>
+						))}
+					</ul>
+					<h1>中部地區</h1>
+					<ul>
+						{['苗栗縣', '臺中市', '彰化縣', '南投縣', '雲林縣'].map((city) => (
+							<li key={city} data-city={city} onClick={(e) => handleCityClick(e)}>
+								{city}
+							</li>
+						))}
+					</ul>
+					<h1>南部地區</h1>
+					<ul>
+						{['嘉義市', '嘉義縣', '臺南市', '高雄市', '屏東縣'].map((city) => (
+							<li key={city} data-city={city} onClick={(e) => handleCityClick(e)}>
+								{city}
+							</li>
+						))}
 
-						</ul>
-						<h1>東部地區</h1>
-						<ul>
-							<li data-city="花蓮縣">花蓮縣</li>
-							<li data-city="台東縣">臺東縣</li>
+					</ul>
+					<h1>東部地區</h1>
+					<ul>
+						{['花蓮縣', '臺東縣'].map((city) => (
+							<li key={city} data-city={city} onClick={(e) => handleCityClick(e)}>
+								{city}
+							</li>
+						))}
 
-						</ul>
-						<h1>離島地區</h1>
-						<ul>
-							<li data-city="綠島">綠島</li>
-							<li data-city="蘭嶼">蘭嶼</li>
-							<li data-city="澎湖">澎湖</li>
-							<li data-city="馬祖">馬祖</li>
-							<li data-city="金門">金門</li>
-						</ul>
+					</ul>
+					<h1>離島地區</h1>
+					<ul>
+						{['綠島', '蘭嶼', '澎湖', '馬祖', '金門'].map((city) => (
+							<li key={city} data-city={city} onClick={(e) => handleCityClick(e)}>
+								{city}
+							</li>
+						))}
+					</ul>
 				</div>
 				<div className='CityList'>
 

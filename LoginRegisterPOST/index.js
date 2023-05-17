@@ -70,3 +70,12 @@ app.use('/', router2);
 
 const authRoute = require("./js/auth.js");
 app.use("/auth", authRoute);
+
+
+app.get('/getSessionData', (req, res) => {
+    if (req.session.user) {
+     res.json({status:'successLogin', data:req.session.user});
+    } else {
+      res.json({status:'failLogin', message: 'FailLogin' });
+    }
+});

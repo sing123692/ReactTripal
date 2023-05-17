@@ -20,10 +20,7 @@ app.use(session({
     cookie :{secure:false}
 }));
 
-app.use('/getSessionData', (req, res, next) => {
-    console.log(req.session); // 输出 session
-    next();
-  });
+
 
 page.post('/login2', express.urlencoded(), (req, res) => {
 
@@ -71,15 +68,7 @@ page.post('/login2', express.urlencoded(), (req, res) => {
   
 });
 
-app.get('/getSessionData', (req, res) => {
-    if (req.session.user) {
-      console.log(req.session.user);
-      const sessionData = req.session.user;
-      res.json(sessionData);
-    } else {
-      res.redirect('/');
-    }
-});
+
 
   
 //https://custudy.wordpress.com/2016/12/09/session-%E5%9C%A8-express-%E4%B8%8A%E7%9A%84%E6%87%89%E7%94%A8-%E7%99%BB%E5%85%A5%E5%AF%A6%E4%BD%9C%E7%82%BA%E4%BE%8B/
