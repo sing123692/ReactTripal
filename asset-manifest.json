@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/sing123692/ReactTripal/static/css/main.e2ce49f6.css",
+    "main.js": "/sing123692/ReactTripal/static/js/main.8ba9940a.js",
+    "static/js/787.195cc2ae.chunk.js": "/sing123692/ReactTripal/static/js/787.195cc2ae.chunk.js",
+    "index.html": "/sing123692/ReactTripal/index.html",
+    "main.e2ce49f6.css.map": "/sing123692/ReactTripal/static/css/main.e2ce49f6.css.map",
+    "main.8ba9940a.js.map": "/sing123692/ReactTripal/static/js/main.8ba9940a.js.map",
+    "787.195cc2ae.chunk.js.map": "/sing123692/ReactTripal/static/js/787.195cc2ae.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e2ce49f6.css",
+    "static/js/main.8ba9940a.js"
+  ]
+}
